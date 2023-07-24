@@ -26,8 +26,9 @@ CREATE TABLE `bookings` (
   `BookingID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `TableNumber` int(11) NOT NULL,
+  `CustomerID` int(11) NOT NULL,
   PRIMARY KEY (`BookingID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +37,7 @@ CREATE TABLE `bookings` (
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
-INSERT INTO `bookings` VALUES (1,'2023-07-21',12),(2,'2023-07-21',7);
+INSERT INTO `bookings` VALUES (1,'2022-10-10',5,1),(2,'2022-11-12',3,3),(3,'2022-10-11',2,2),(4,'2022-10-13',2,1),(12,'2023-06-06',11,1);
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'9999999999','craig@aol.com','Craig Craig',1),(2,'1212121212','dan@aol.com','Danny Boy',2);
+INSERT INTO `customers` VALUES (1,'1111111111','jam@aol.com','Jamie',2);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +183,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2023-07-21',1,45,4,1,2,1),(2,'2023-07-21',3,12,2,2,1,2),(3,'2023-07-21',3,160,2,2,1,2),(4,'2023-07-21',5,160,2,2,2,2),(6,'2023-01-21',4,14,1,3,1,1);
+INSERT INTO `orders` VALUES (1,'2023-05-10',2,100,1,1,1,1),(2,'2023-05-10',3,50,22,2,2,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-21 16:40:55
+-- Dump completed on 2023-07-24 13:11:06

@@ -1,12 +1,8 @@
-INSERT INTO Bookings (BookingID, Date, TableNumber)
-VALUES 
-	(1, '2022-10-10', 5, 1),
-	(2, '2022-11-12', 3, 3),
-	(3, '2022-10-11', 2, 2),
-    (4, '2022-10-13', 2, 1);
+CREATE PROCEDURE GetMaxQuantity()
+	SELECT MAX(Quantity) FROM Orders;
 
--- the instructions as for a ManageBooking() procedure but that doesn't exist in the course. I added CheckBooking and AddValidBooking here instead
 
+-- the instructions ask for a ManageBooking() procedure but that doesn't exist in the course. I assume they mean CheckBooking()
 DELIMITER //
 CREATE PROCEDURE CheckBooking(IN DateInput DATE, IN TableNumberInput INT)
 	BEGIN
@@ -16,34 +12,6 @@ CREATE PROCEDURE CheckBooking(IN DateInput DATE, IN TableNumberInput INT)
 			SELECT CONCAT('Table ', TableNumberInput, ' is already booked') AS 'Booking status';
 		END IF;
     END // 
-DELIMITER ;
-
-
-DELIMITER //
-CREATE PROCEDURE AddValidBooking(IN DateInput DATE, IN TableNumberInput INT)
-	BEGIN
-		DECLARE commit_flag BOOLEAN DEFAULT TRUE;
-		DECLARE existingBooking INT;
-
-		START TRANSACTION;
-			SELECT COUNT(*) INTO existingBooking
-            FROM Bookings 
-            WHERE Date = DateInput AND TableNumber = TableNumberInput;
-            
-            IF existingBooking = 0 THEN 
-				INSERT INTO Bookings (Date, TableNumber)
-				VALUES (DateInput, TableNumberInput);
-			ELSE 
-				SET commit_flag = FALSE;
-			END IF;
-            
-            IF commit_flag THEN
-				COMMIT;
-			ELSE 
-				ROLLBACK;
-                SELECT CONCAT('Table ', TableNumberInput, ' is already booked - booking cancelled') AS 'Booking status';
-			END IF;
-	END // 
 DELIMITER ;
 
 
